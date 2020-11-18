@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.junit.jupiter.api.*;
 
@@ -59,10 +60,10 @@ class ApkUpdaterTests {
     private static final int MAX_DOWNLOAD_TIME = DOWNLOAD_INTERVAL_IN_MS - 100;
 
     private static class Events {
-        private ArrayList<UpdateDownloadEvent> events = new ArrayList<>();
-        private ArrayList<Exception> exceptions = new ArrayList<>();
-        private ArrayList<UnzipProgress> unzipProgress = new ArrayList<>();
-        private ArrayList<DownloadProgress> downloadProgress = new ArrayList<>();
+        private final ArrayList<UpdateDownloadEvent> events = new ArrayList<>();
+        private final ArrayList<Exception> exceptions = new ArrayList<>();
+        private final ArrayList<UnzipProgress> unzipProgress = new ArrayList<>();
+        private final ArrayList<DownloadProgress> downloadProgress = new ArrayList<>();
 
         ArrayList<DownloadProgress> getDownloadProgress() {
             return downloadProgress;
@@ -87,7 +88,7 @@ class ApkUpdaterTests {
             if (!destination.exists()) {
                 destination.mkdir();
             }
-            for (String file : source.list()) {
+            for (String file : Objects.requireNonNull(source.list())) {
                 copyFile(new File(source, file), new File(destination, file));
             }
         } else {
@@ -465,7 +466,7 @@ class ApkUpdaterTests {
                 waitForFile(PART_02);
                 assertEquals(1, exceptions.size());
                 assertTrue(exceptions.get(0) instanceof FileNotFoundException);
-                assertTrue(exceptions.get(0).getMessage().endsWith(PART_02));
+                assertTrue(Objects.requireNonNull(exceptions.get(0).getMessage()).endsWith(PART_02));
             }
 
             @Test
