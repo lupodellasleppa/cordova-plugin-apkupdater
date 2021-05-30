@@ -14,7 +14,7 @@ public class PackageReplacedReceiver extends BroadcastReceiver {
         String mainActivity = launchIntent.getComponent().getClassName();
 
         Intent activityIntent = new Intent();
-        activityIntent.setClassName(context, String.format("%s.%s", packageName, mainActivity));
+        activityIntent.setClassName(context, mainActivity);
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
