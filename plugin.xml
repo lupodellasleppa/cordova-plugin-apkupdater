@@ -54,12 +54,18 @@
                            android:resource="@xml/apkupdater_paths">
                 </meta-data>
             </provider>
+            <receiver android:name="de.kolbasa.apkupdater.PackageReplacedReceiver" android:enabled="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                </intent-filter>
+            </receiver>
         </config-file>
 
         <source-file src="res/apkupdater_paths.xml" target-dir="res/xml"/>
         <source-file src="src/android/ApkUpdater.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/ApkInstaller.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/Event.java" target-dir="src/de/kolbasa/apkupdater"/>
+        <source-file src="src/android/PackageReplacedReceiver.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/UpdateManager.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/CordovaError.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/downloader/progress/AbstractProgress.java"
