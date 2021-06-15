@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,15 +24,15 @@ public class UpdateDownloader extends FileDownloader {
 
     private static final int BROADCAST_LOCK_MILLIS = 100;
 
-    private Manifest manifest;
-    private String serverURL;
-    private String downloadPath;
-    private int timeout;
+    private final Manifest manifest;
+    private final String serverURL;
+    private final String downloadPath;
+    private final int timeout;
     private UpdateChunk currentChunk;
     private Unzipper unzipper;
 
     private Timer timer;
-    private DownloadProgress progress;
+    private final DownloadProgress progress;
     private DownloadProgress lastProgress;
 
     private Integer interval;
@@ -103,9 +104,12 @@ public class UpdateDownloader extends FileDownloader {
             downloadDir.mkdir();
         }
 
-        for (File dir : new File(downloadPath).listFiles()) {
-            if (dir.isDirectory() && !dir.getName().equals(checkSum)) {
-                FileTools.deleteDirectory(dir);
+        File[] downloadedUpdates = new File(downloadPath).listFiles();
+        if (downloadedUpdates != null) {
+            for (File dir : downloadedUpdates) {
+                if (dir.isDirectory() && !dir.getName().equals(checkSum)) {
+                    FileTools.deleteDirectory(dir);
+                }
             }
         }
 

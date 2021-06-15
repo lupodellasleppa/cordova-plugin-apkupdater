@@ -6,7 +6,7 @@ public class UpdateChunk {
 
     private File file;
 
-    private String checksum;
+    private final String checksum;
 
     private long bytesDownloaded;
 

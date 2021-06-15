@@ -21,13 +21,13 @@ class UpdateManager {
     private static final int DEFAULT_TIMEOUT = 30 * 1000; // 30sec
     private static final String MANIFEST_FILE = "manifest.json";
 
-    private int timeout;
-    private String manifestUrl;
-    private String downloadPath;
+    private final int timeout;
+    private final String manifestUrl;
+    private final String downloadPath;
     private Observer observer;
 
     private Manifest manifest;
-    private ManifestDownloader manifestDownloader;
+    private final ManifestDownloader manifestDownloader;
     private UpdateDownloader updateDownloader;
 
     UpdateManager(String manifestUrl, String downloadPath, int timeout) {

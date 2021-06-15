@@ -19,7 +19,7 @@ class ApkInstaller extends Observable {
         COPYING("Copying update to cache"),
         INSTALLING("Installing update");
 
-        private String readableString;
+        private final String readableString;
 
         @Override
         public String getMessage() {

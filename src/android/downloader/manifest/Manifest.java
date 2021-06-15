@@ -7,15 +7,15 @@ import de.kolbasa.apkupdater.downloader.update.UpdateChunk;
 
 public class Manifest {
 
-    private String version;
-    private String checksum;
+    private final String version;
+    private final String checksum;
     private File file;
     private File updateFile;
 
-    private Integer size;
-    private Integer compressedSize;
+    private final Integer size;
+    private final Integer compressedSize;
 
-    private List<UpdateChunk> chunks;
+    private final List<UpdateChunk> chunks;
 
     Manifest(String version, String checksum, List<UpdateChunk> chunks,
              Integer size, Integer compressedSize) {

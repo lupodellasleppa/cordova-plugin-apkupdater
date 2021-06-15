@@ -2,7 +2,7 @@ package de.kolbasa.apkupdater.downloader.progress;
 
 public class DownloadProgress extends AbstractProgress {
 
-    private int chunks;
+    private final int chunks;
     private int chunksDownloaded;
 
     public DownloadProgress(int bytes, int chunks) {

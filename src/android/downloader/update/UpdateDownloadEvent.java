@@ -10,7 +10,7 @@ public enum UpdateDownloadEvent implements Event {
     SPEEDING_UP_DOWNLOAD("Speeding up download"),
     SLOWING_DOWN_DOWNLOAD("Slowing down download");
 
-    private String readableString;
+    private final String readableString;
 
     @Override
     public String getMessage() {

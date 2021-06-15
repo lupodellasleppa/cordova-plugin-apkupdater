@@ -17,11 +17,13 @@ public class FileTools {
 
         if (fileToDelete.isDirectory()) {
             File[] files = fileToDelete.listFiles();
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    delete(file);
-                } else {
-                    file.delete();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        delete(file);
+                    } else {
+                        file.delete();
+                    }
                 }
             }
         }
@@ -36,8 +38,10 @@ public class FileTools {
     public static void clearDirectory(File directory) {
         if (directory.exists()) {
             File[] files = directory.listFiles();
-            for (File file : files) {
-                delete(file);
+            if (files != null) {
+                for (File file : files) {
+                    delete(file);
+                }
             }
         }
     }
@@ -45,7 +49,6 @@ public class FileTools {
     public static void copy(File src, File dst) throws IOException {
         try (InputStream in = new FileInputStream(src)) {
             try (OutputStream out = new FileOutputStream(dst)) {
-                // Transfer bytes from in to out
                 byte[] buf = new byte[1024];
                 int len;
                 while ((len = in.read(buf)) > 0) {
@@ -58,9 +61,11 @@ public class FileTools {
     public static File findByFileType(File directory, String type) {
         if (directory.exists()) {
             File[] files = directory.listFiles();
-            for (File file : files) {
-                if (file.getName().toLowerCase().endsWith("." + type)) {
-                    return file;
+            if (files != null) {
+                for (File file : files) {
+                    if (file.getName().toLowerCase().endsWith("." + type)) {
+                        return file;
+                    }
                 }
             }
         }

@@ -11,7 +11,7 @@ public enum CordovaError {
     DOWNLOAD_NOT_RUNNING("Download is not running."),
     DOWNLOAD_ALREADY_RUNNING("Download is already running.");
 
-    private String readableString;
+    private final String readableString;
 
     public String getMessage() {
         return this.readableString;

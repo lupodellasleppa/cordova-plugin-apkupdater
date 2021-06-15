@@ -23,9 +23,9 @@ public class ManifestDownloader extends FileDownloader {
     private static final String COMPRESSED_SIZE_KEY = "compressedSize";
     private static final String SUM_KEY = "sum";
 
-    private String serverURL;
-    private String downloadPath;
-    private int timeout;
+    private final String serverURL;
+    private final String downloadPath;
+    private final int timeout;
 
     public ManifestDownloader(String manifestUrl, String downloadPath, int timeout) {
         this.serverURL = manifestUrl;

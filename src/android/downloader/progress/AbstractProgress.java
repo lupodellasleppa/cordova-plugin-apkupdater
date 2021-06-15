@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public abstract class AbstractProgress {
 
-    private long bytes;
+    private final long bytes;
     private long bytesWritten;
     private float percent;
 
