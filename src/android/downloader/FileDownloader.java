@@ -1,11 +1,14 @@
 package de.kolbasa.apkupdater.downloader;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Observable;
 
 public abstract class FileDownloader extends Observable {
@@ -21,6 +24,10 @@ public abstract class FileDownloader extends Observable {
     }
 
     protected void download(String fileUrl, String destination, int timeout) throws IOException {
+        download(fileUrl, destination, timeout, null);
+    }
+
+    protected void download(String fileUrl, String destination, int timeout, JSONObject body) throws IOException {
         interrupted = false;
 
         String fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
@@ -30,6 +37,15 @@ public abstract class FileDownloader extends Observable {
         connection.setAllowUserInteraction(false);
         connection.setConnectTimeout(timeout);
         connection.setReadTimeout(timeout);
+
+        if (body != null) {
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestMethod("POST");
+            connection.getOutputStream().write(body.toString().getBytes(StandardCharsets.UTF_8));
+            connection.getOutputStream().close();
+        }
+
         connection.connect();
 
         File file = new File(destination);
