@@ -58,6 +58,7 @@
 
         <source-file src="res/apkupdater_paths.xml" target-dir="res/xml"/>
         <source-file src="src/android/ApkUpdater.java" target-dir="src/de/kolbasa/apkupdater"/>
+        <source-file src="src/android/AppData.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/ApkInstaller.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/Event.java" target-dir="src/de/kolbasa/apkupdater"/>
         <source-file src="src/android/UpdateManager.java" target-dir="src/de/kolbasa/apkupdater"/>
